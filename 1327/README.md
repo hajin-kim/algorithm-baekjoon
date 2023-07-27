@@ -1,4 +1,4 @@
-# 1327 소트 게임
+# 1327 - 소트 게임
 
 <https://www.acmicpc.net/problem/1327> g5
 

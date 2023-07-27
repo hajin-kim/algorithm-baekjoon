@@ -1,4 +1,4 @@
-# 16928 뱀과 사다리 게임
+# 16928 - 뱀과 사다리 게임
 
 <https://www.acmicpc.net/problem/16928> g5
 
