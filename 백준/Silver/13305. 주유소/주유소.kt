@@ -19,7 +19,7 @@ fun main() {
 
             remaining += assigned
 
-            price * assigned
+            price.toLong() * assigned
         }
 
     println(result)
