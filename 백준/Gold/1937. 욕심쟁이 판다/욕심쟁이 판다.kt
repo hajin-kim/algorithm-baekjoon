@@ -19,7 +19,7 @@ fun solve(n: Int, grid: Array<IntArray>): Int {
                 r to c + 1,
                 r to c - 1,
             ).forEach { (nr, nc) ->
-                if (isInRange(nr, nc) && grid[nr][nc] > value) // for the case that score equals
+                if (isInRange(nr, nc) && grid[nr][nc] > value) // for the case that values are equal
                     nearMaxScore = maxOf(nearMaxScore, scores[nr][nc])
             }
 
