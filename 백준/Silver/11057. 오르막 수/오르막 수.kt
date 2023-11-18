@@ -1,17 +1,17 @@
-const val MOD = 10007
+import java.math.BigDecimal
 
+const val MOD = 10007
 fun solve(n: Int): Int {
-    val cache = IntArray(10) { 1 }
-    repeat(n - 1) {
-        var casesOfPreviousDigit = 0
-        repeat(10) { i ->
-            casesOfPreviousDigit += cache[i]
-            casesOfPreviousDigit %= MOD
-            cache[i] = casesOfPreviousDigit
-        }
+    var result = BigDecimal(1)
+    var multiplier = BigDecimal(10)
+    var divisor = BigDecimal(1)
+    repeat(n) {
+        result = result * multiplier / divisor
+        ++multiplier
+        ++divisor
     }
 
-    return cache.sum() % MOD
+    return result.remainder(MOD.toBigDecimal()).intValueExact()
 }
 
 fun main() {
