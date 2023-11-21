@@ -29,36 +29,51 @@ fun precalculateEdgeArray(): Array<List<Pair<Int, Char>>> {
     }
 }
 
-fun solve(edgeArray: Array<List<Pair<Int, Char>>>, start: Int, end: Int): List<Char> {
+fun bfs(edgeArray: Array<List<Pair<Int, Char>>>, start: Int, end: Int): Pair<IntArray, CharArray> {
     val discovered = BooleanArray(MAX)
-    val queue: Queue<Pair<Int, List<Char>>> = LinkedList()
+    val queue: Queue<Int> = LinkedList()
+
+    val parents = IntArray(MAX)
+    val commands = CharArray(MAX)
 
     discovered[start] = true
-    queue.add(start to emptyList())
+    queue.add(start)
+    parents[start] = start
 
-    var nextDistance = 1
     while (queue.isNotEmpty()) {
-        repeat(queue.size) {
-            val (number, commands) = queue.poll()
+        val number = queue.poll()
 
-            val neighbors = edgeArray[number]
+        val neighbors = edgeArray[number]
 
-            for ((neighbor, command) in neighbors) {
-                if (discovered[neighbor])
-                    continue
+        for ((neighbor, command) in neighbors) {
+            if (discovered[neighbor])
+                continue
 
-                val nextCommand = commands + command
-                if (neighbor == end)
-                    return nextCommand
+            parents[neighbor] = number
+            commands[neighbor] = command
+            if (neighbor == end)
+                return parents to commands
 
-                discovered[neighbor] = true
-                queue.add(neighbor to nextCommand)
-            }
+            discovered[neighbor] = true
+            queue.add(neighbor)
         }
-        ++nextDistance
     }
 
-    return emptyList()
+    return parents to commands
+}
+
+fun solve(edgeArray: Array<List<Pair<Int, Char>>>, start: Int, end: Int): List<Char> {
+    val (parents, commands) = bfs(edgeArray, start, end)
+
+    val result = LinkedList<Char>()
+    var now = end
+
+    while (now != start) {
+        result.addFirst(commands[now])
+        now = parents[now]
+    }
+
+    return result
 }
 
 fun main() {
