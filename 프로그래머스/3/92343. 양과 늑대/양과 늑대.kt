@@ -1,36 +1,29 @@
 class Solution {
     fun solution(info: IntArray, edges: Array<IntArray>): Int {
-        val edgeMap = let {
-            val firstToSecond = edges.groupBy { it[0] }.mapValues { (_, v) -> v.map { it[1] } }
-            val secondToFirst = edges.groupBy { it[1] }.mapValues { (_, v) -> v.map { it[0] } }
-
-            firstToSecond + secondToFirst
-        }
-
         val visited = BooleanArray(info.size)
         var answer = 0
 
-        fun dfs(now: Int, sheep: Int, wolf: Int) {
+        fun dfs(now: Int, sheepBefore: Int, wolfBefore: Int) {
             if (visited[now])
                 return
 
-            val nextSheep = sheep + (1 - info[now])
-            val nextWolf = wolf + info[now]
-            if (nextSheep == nextWolf)
+            val sheep = sheepBefore + (1 - info[now])
+            val wolf = wolfBefore + info[now]
+            if (sheep == wolf)
                 return
 
             visited[now] = true
 
-
-            answer = maxOf(answer, nextSheep)
+            answer = maxOf(answer, sheep)
 
             for ((start, end) in edges) {
                 if (visited[start] && !visited[end])
-                    dfs(end, nextSheep, nextWolf)
+                    dfs(end, sheep, wolf)
             }
 
             visited[now] = false
         }
+
         dfs(0, 0, 0)
 
         return answer
