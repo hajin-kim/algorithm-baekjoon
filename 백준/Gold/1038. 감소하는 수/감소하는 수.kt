@@ -2,7 +2,7 @@ import java.util.PriorityQueue
 
 fun solve(n: Int): Long {
     val priorityQueue = PriorityQueue<Long>()
-    priorityQueue += (0L..9L)
+    priorityQueue += 0L..9L
 
     var i = 0
 
