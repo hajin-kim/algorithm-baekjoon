@@ -1,4 +1,4 @@
-// 18:15 ~
+// 18:15 ~ 18:28 (약간 인터럽트가 있었음)
 class Solution {
     fun solution(survey: Array<String>, choices: IntArray): String {
         val n = survey.size
