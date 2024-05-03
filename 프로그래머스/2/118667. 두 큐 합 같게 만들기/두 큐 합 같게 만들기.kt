@@ -1,4 +1,4 @@
-// 18:30 ~
+// 18:30 ~ 18:45
 class Solution {
     fun solution(queue1: IntArray, queue2: IntArray): Int {
         val n = queue1.size
