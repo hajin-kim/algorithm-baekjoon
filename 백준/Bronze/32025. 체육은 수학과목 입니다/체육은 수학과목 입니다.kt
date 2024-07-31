@@ -1,0 +1,1 @@
+fun main()=println(List(2){readLine()!!.toInt()}.min()*50)
