@@ -83,8 +83,8 @@ fun solve(n: Int, m: Int, space: Array<CharArray>, pr: Int, pc: Int): Pair<Direc
             time += 1
 
             val (dr, dc) = direction.getDrDc()
-            r = r + dr
-            c = c + dc
+            r += dr
+            c += dc
         }
 
         if (time > resultTime) {
